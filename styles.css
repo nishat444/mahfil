@@ -83,6 +83,11 @@ h1, h2, h3, h4, h5, h6 {
     text-transform: uppercase;
     position: relative;
     overflow: hidden;
+    min-width: 200px;
+    height: 50px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .btn-secondary::before {
@@ -1583,6 +1588,11 @@ html {
     cursor: pointer;
     pointer-events: auto;
     z-index: 100;
+    min-width: 200px;
+    height: 50px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .youtube-btn::before {
