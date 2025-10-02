@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simple Hero Test</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+        }
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 20px;
+        }
+        .hero-content {
+            flex: 1;
+            max-width: 600px;
+        }
+        .hero-image {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .artist-image {
+            max-width: 100%;
+            height: auto;
+            border-radius: 20px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+            border: 3px solid white;
+        }
+        .hero-title {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+        .hero-subtitle {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+        }
+        .debug {
+            position: fixed;
+            top: 10px;
+            right: 10px;
+            background: rgba(0,0,0,0.8);
+            color: white;
+            padding: 10px;
+            border-radius: 5px;
+            font-size: 12px;
+        }
+    </style>
+</head>
+<body>
+    <div class="debug" id="debug">
+        Loading image...
+    </div>
+    
+    <section class="hero">
+        <div class="hero-content">
+            <h1 class="hero-title">Shehzada-E-Ghazal</h1>
+            <h2 class="hero-subtitle">Experience the Voice of Music</h2>
+            <p>Where words fail, music speaks</p>
+        </div>
+        <div class="hero-image">
+            <img src="https://via.placeholder.com/400x600/667eea/ffffff?text=ASIF" 
+                 alt="Asif" 
+                 class="artist-image"
+                 id="heroImage">
+        </div>
+    </section>
+
+    <script>
+        const heroImage = document.getElementById('heroImage');
+        const debug = document.getElementById('debug');
+        
+        heroImage.onload = function() {
+            debug.innerHTML = '✅ Image loaded successfully!';
+            debug.style.background = 'rgba(0,128,0,0.8)';
+        };
+        
+        heroImage.onerror = function() {
+            debug.innerHTML = '❌ Image failed to load';
+            debug.style.background = 'rgba(255,0,0,0.8)';
+        };
+        
+        // Test with different image sources
+        setTimeout(() => {
+            if (debug.innerHTML.includes('Loading')) {
+                debug.innerHTML = '⚠️ Trying alternative image...';
+                heroImage.src = 'https://picsum.photos/400/600';
+            }
+        }, 2000);
+    </script>
+</body>
+</html>

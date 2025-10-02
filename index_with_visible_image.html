@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mahfil - Experience the Voice of Music</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        /* Force image to be visible */
+        .hero-image {
+            background: red !important;
+            border: 5px solid yellow !important;
+            min-height: 400px !important;
+        }
+        .artist-image {
+            border: 5px solid green !important;
+            background: white !important;
+            min-width: 200px !important;
+            min-height: 300px !important;
+        }
+        .debug-info {
+            position: fixed;
+            top: 10px;
+            left: 10px;
+            background: black;
+            color: white;
+            padding: 10px;
+            z-index: 9999;
+            font-size: 12px;
+        }
+    </style>
+</head>
+<body>
+    <div class="debug-info" id="debugInfo">
+        Loading...
+    </div>
+
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <img src="https://via.placeholder.com/50x50/ff6b6b/ffffff?text=M" alt="Mahfil Logo" class="logo">
+            </div>
+            <ul class="nav-menu">
+                <li class="nav-item"><a href="#home" class="nav-link">Home</a></li>
+                <li class="nav-item"><a href="#about" class="nav-link">About</a></li>
+                <li class="nav-item"><a href="#contact" class="nav-link">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="hero-content">
+            <h1 class="hero-title">Shehzada-E-Ghazal</h1>
+            <h2 class="hero-subtitle">Experience the Voice of Music</h2>
+            <p class="hero-description">Where words fail, music speaks</p>
+            <div class="hero-buttons">
+                <button class="btn btn-primary">Listen Now</button>
+                <button class="btn btn-secondary">Watch Videos</button>
+            </div>
+        </div>
+        <div class="hero-image">
+            <img src="https://via.placeholder.com/400x600/ff0000/ffffff?text=ASIF+PHOTO" 
+                 alt="Asif" 
+                 class="artist-image"
+                 id="heroImage">
+        </div>
+    </section>
+
+    <script>
+        const debugInfo = document.getElementById('debugInfo');
+        const heroImage = document.getElementById('heroImage');
+        
+        function updateDebug(message) {
+            debugInfo.innerHTML = message;
+            console.log(message);
+        }
+        
+        updateDebug('Page loaded, checking image...');
+        
+        heroImage.onload = function() {
+            updateDebug('✅ ASIF image loaded successfully!');
+        };
+        
+        heroImage.onerror = function() {
+            updateDebug('❌ ASIF image failed to load');
+        };
+        
+        // Also try alternative images
+        setTimeout(() => {
+            if (debugInfo.innerHTML.includes('checking')) {
+                updateDebug('⚠️ Trying alternative image...');
+                heroImage.src = 'https://picsum.photos/400/600';
+            }
+        }, 2000);
+        
+        // Force image to be visible
+        setTimeout(() => {
+            heroImage.style.display = 'block';
+            heroImage.style.visibility = 'visible';
+            heroImage.style.opacity = '1';
+            updateDebug('🔧 Forced image visibility');
+        }, 1000);
+    </script>
+</body>
+</html>

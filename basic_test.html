@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Basic Image Test</title>
+</head>
+<body>
+    <h1>Basic Image Test</h1>
+    
+    <h2>Test 1: Simple Image</h2>
+    <img src="https://via.placeholder.com/300x200/ff0000/ffffff?text=TEST1" alt="Test 1">
+    
+    <h2>Test 2: Different Image</h2>
+    <img src="https://picsum.photos/300/200" alt="Test 2">
+    
+    <h2>Test 3: ASIF Image</h2>
+    <img src="https://via.placeholder.com/400x600/667eea/ffffff?text=ASIF" alt="ASIF" style="border: 5px solid red;">
+    
+    <h2>Test 4: Local File (if exists)</h2>
+    <img src="assets/asif.jpg" alt="Local ASIF" style="border: 5px solid blue;">
+    
+    <script>
+        console.log("Page loaded");
+        document.querySelectorAll('img').forEach((img, index) => {
+            img.onload = () => console.log(`Image ${index + 1} loaded successfully`);
+            img.onerror = () => console.log(`Image ${index + 1} failed to load`);
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>ASIF Photo Test</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background: #f0f0f0;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        .hero-section {
+            display: flex;
+            align-items: center;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 40px;
+            border-radius: 15px;
+            margin: 20px 0;
+        }
+        .hero-content {
+            flex: 1;
+        }
+        .hero-image {
+            flex: 1;
+            text-align: center;
+        }
+        .asif-photo {
+            width: 300px;
+            height: 400px;
+            border: 5px solid white;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+        }
+        .fallback-box {
+            width: 300px;
+            height: 400px;
+            background: linear-gradient(45deg, #ff6b6b, #4ecdc4);
+            border: 5px solid white;
+            border-radius: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            font-weight: bold;
+            color: white;
+            text-align: center;
+        }
+        .status {
+            padding: 10px;
+            margin: 10px 0;
+            border-radius: 5px;
+            font-weight: bold;
+        }
+        .success { background: #d4edda; color: #155724; }
+        .error { background: #f8d7da; color: #721c24; }
+        .info { background: #d1ecf1; color: #0c5460; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>ASIF Photo Test</h1>
+        
+        <div class="status info">
+            <strong>Instructions:</strong> This page will try multiple ways to show ASIF's photo
+        </div>
+        
+        <div class="hero-section">
+            <div class="hero-content">
+                <h1>Shehzada-E-Ghazal</h1>
+                <h2>Experience the Voice of Music</h2>
+                <p>Where words fail, music speaks</p>
+            </div>
+            <div class="hero-image">
+                <img src="https://via.placeholder.com/300x400/ff6b6b/ffffff?text=ASIF" 
+                     alt="ASIF" 
+                     class="asif-photo" 
+                     id="asifImage"
+                     onload="showSuccess()"
+                     onerror="showError()">
+                <div class="fallback-box" id="fallbackBox" style="display: none;">
+                    ASIF<br>PHOTO<br>PLACEHOLDER
+                </div>
+            </div>
+        </div>
+        
+        <div class="status" id="statusMessage">
+            <strong>Loading...</strong> Trying to load ASIF's photo...
+        </div>
+        
+        <div style="margin-top: 20px;">
+            <h3>Alternative Methods:</h3>
+            <button onclick="tryMethod1()">Method 1: Placeholder Image</button>
+            <button onclick="tryMethod2()">Method 2: Random Image</button>
+            <button onclick="tryMethod3()">Method 3: Color Block</button>
+            <button onclick="tryMethod4()">Method 4: Local File</button>
+        </div>
+        
+        <div style="margin-top: 20px; padding: 15px; background: #e7f3ff; border-radius: 8px;">
+            <h3>What you should see:</h3>
+            <ul>
+                <li>If the image loads: You'll see "ASIF" text on a colored background</li>
+                <li>If the image fails: You'll see a colored box with "ASIF PHOTO PLACEHOLDER"</li>
+                <li>Either way, you should see SOMETHING in the right side of the hero section</li>
+            </ul>
+        </div>
+    </div>
+
+    <script>
+        function showSuccess() {
+            document.getElementById('statusMessage').innerHTML = '<strong>✅ SUCCESS:</strong> ASIF photo loaded successfully!';
+            document.getElementById('statusMessage').className = 'status success';
+            document.getElementById('fallbackBox').style.display = 'none';
+        }
+        
+        function showError() {
+            document.getElementById('statusMessage').innerHTML = '<strong>❌ ERROR:</strong> Could not load ASIF photo. Showing fallback.';
+            document.getElementById('statusMessage').className = 'status error';
+            document.getElementById('fallbackBox').style.display = 'flex';
+        }
+        
+        function tryMethod1() {
+            document.getElementById('asifImage').src = 'https://via.placeholder.com/300x400/ff6b6b/ffffff?text=ASIF';
+            document.getElementById('statusMessage').innerHTML = '<strong>🔄 TRYING:</strong> Method 1 - Placeholder Image';
+            document.getElementById('statusMessage').className = 'status info';
+        }
+        
+        function tryMethod2() {
+            document.getElementById('asifImage').src = 'https://picsum.photos/300/400';
+            document.getElementById('statusMessage').innerHTML = '<strong>🔄 TRYING:</strong> Method 2 - Random Image';
+            document.getElementById('statusMessage').className = 'status info';
+        }
+        
+        function tryMethod3() {
+            document.getElementById('asifImage').style.display = 'none';
+            document.getElementById('fallbackBox').style.display = 'flex';
+            document.getElementById('statusMessage').innerHTML = '<strong>🔄 TRYING:</strong> Method 3 - Color Block';
+            document.getElementById('statusMessage').className = 'status info';
+        }
+        
+        function tryMethod4() {
+            document.getElementById('asifImage').src = 'assets/asif.jpg';
+            document.getElementById('asifImage').style.display = 'block';
+            document.getElementById('fallbackBox').style.display = 'none';
+            document.getElementById('statusMessage').innerHTML = '<strong>🔄 TRYING:</strong> Method 4 - Local File';
+            document.getElementById('statusMessage').className = 'status info';
+        }
+        
+        // Auto-try different methods
+        setTimeout(() => {
+            if (document.getElementById('statusMessage').innerHTML.includes('Loading')) {
+                showError();
+            }
+        }, 3000);
+    </script>
+</body>
+</html>

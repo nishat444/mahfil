@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Image Test</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+            background: #f0f0f0;
+        }
+        .test-container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        .image-test {
+            text-align: center;
+            margin: 20px 0;
+        }
+        .image-test img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+        .status {
+            padding: 10px;
+            margin: 10px 0;
+            border-radius: 5px;
+        }
+        .success {
+            background: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+        }
+        .error {
+            background: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
+        }
+    </style>
+</head>
+<body>
+    <div class="test-container">
+        <h1>Image Loading Test</h1>
+        
+        <div class="status success">
+            <strong>✅ Test 1:</strong> If you can see the image below, the placeholder service is working.
+        </div>
+        
+        <div class="image-test">
+            <h3>Placeholder Image Test:</h3>
+            <img src="https://via.placeholder.com/400x600/667eea/ffffff?text=ASIF" alt="Test Image" id="testImage">
+        </div>
+        
+        <div class="status" id="imageStatus">
+            <strong>⏳ Loading...</strong> Checking if image loads...
+        </div>
+        
+        <div class="image-test">
+            <h3>Alternative Test Image:</h3>
+            <img src="https://picsum.photos/400/600" alt="Random Image">
+        </div>
+        
+        <div class="image-test">
+            <h3>Simple Color Block:</h3>
+            <div style="width: 400px; height: 600px; background: linear-gradient(45deg, #667eea, #764ba2); margin: 0 auto; border-radius: 10px; display: flex; align-items: center; justify-content: center; color: white; font-size: 24px; font-weight: bold;">
+                ASIF
+            </div>
+        </div>
+        
+        <div style="margin-top: 30px; padding: 20px; background: #e7f3ff; border-radius: 10px;">
+            <h3>Next Steps:</h3>
+            <ol>
+                <li>If you can see the images above, the issue is with the main website</li>
+                <li>If you can't see any images, there might be a network/firewall issue</li>
+                <li>Try opening the main <a href="index.html">index.html</a> file in your browser</li>
+                <li>Check the browser console (F12) for any error messages</li>
+            </ol>
+        </div>
+    </div>
+
+    <script>
+        const testImage = document.getElementById('testImage');
+        const imageStatus = document.getElementById('imageStatus');
+        
+        testImage.onload = function() {
+            imageStatus.innerHTML = '<strong>✅ Success:</strong> Images are loading correctly!';
+            imageStatus.className = 'status success';
+        };
+        
+        testImage.onerror = function() {
+            imageStatus.innerHTML = '<strong>❌ Error:</strong> Images are not loading. Check your internet connection or try a different browser.';
+            imageStatus.className = 'status error';
+        };
+        
+        // Also test after 3 seconds
+        setTimeout(() => {
+            if (imageStatus.innerHTML.includes('Loading')) {
+                imageStatus.innerHTML = '<strong>⚠️ Timeout:</strong> Image took too long to load. This might be a network issue.';
+                imageStatus.className = 'status error';
+            }
+        }, 3000);
+    </script>
+</body>
+</html>
